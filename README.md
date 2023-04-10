@@ -1,0 +1,2 @@
+### About
+It's a basic to-do list application to practice the MVC (model-view-controller) design pattern in jQuery. With this design, it's features are much more extendable. In the way it's designed, there is an easy means to attach to AJAX and connect to a database.
