@@ -4,6 +4,7 @@ const FormView = {
 
   initialize: function () {
     FormView.$form.on('submit', FormView.handleSubmit);
+    $(document).on('click', '#filter a:not(#text)', FormView.handleFilter);
   },
 
   handleSubmit: function (e) {
@@ -16,5 +17,11 @@ const FormView = {
     });
 
     FormView.$input.val('');
+  },
+
+  handleFilter: function (e) {
+    $('#filter a:not(#text)').removeClass();
+    $(this).addClass('active');
+    Tasks.setFilter($(this).attr('id'), TasksView.render);
   }
 };

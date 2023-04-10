@@ -10,7 +10,22 @@ const TasksView = {
 
   render: function () {
     TasksView.$tasks.html('');
-    Tasks.each(TasksView.renderTask);
+    _.chain(Tasks._data)
+      .reduce((accum, key) => {
+        accum.push(key);
+        return accum;
+      }, [])
+      .sortBy('createdAt')
+      .filter((task, key) => {
+        if (Tasks.getFilter() === 'finished') {
+          return task.finished;
+        }
+        if (Tasks.getFilter() === 'unfinished') {
+          return !task.finished;
+        }
+        return true;
+      })
+      .each(TasksView.renderTask);
   },
 
   renderTask: function (task) {
@@ -25,7 +40,9 @@ const TasksView = {
 
   handleCheck: function (e) {
     const id = $(this).attr('for');
-    Tasks.setFinished(id, !Tasks.get(id).finished, TasksView.render);
+    if (id !== undefined && id.length !== 0) {
+      Tasks.setFinished(id, !Tasks.get(id).finished, TasksView.render);
+    }
 
     e.preventDefault();
     e.stopPropagation();
@@ -33,8 +50,10 @@ const TasksView = {
 
   handleEdit: function (e) {
     const id = $($(this).siblings('input[type="checkbox"]')[0]).attr('id');
-    const text = window.prompt('Edit this?', Tasks.get(id).text) || Tasks.get(id).text;
-    Tasks.update(id, text, TasksView.render);
+    if (id !== undefined && id.length !== 0) {
+      const text = window.prompt('Edit this?', Tasks.get(id).text) || Tasks.get(id).text;
+      Tasks.update(id, text, TasksView.render);
+    }
 
     e.preventDefault();
     e.stopPropagation();
@@ -42,10 +61,11 @@ const TasksView = {
 
   handleDelete: function (e) {
     const id = $($(this).siblings('input[type="checkbox"]')[0]).attr('id');
-    //console.log($(`.item[for="${id}"]`));
-    Tasks.delete(id, () => {
-      $(`.item[for="${id}"]`).slideUp(400, TasksView.render);
-    });
+    if (id !== undefined && id.length !== 0) {
+      Tasks.delete(id, () => {
+        $(`.item[for="${id}"]`).slideUp(400, TasksView.render);
+      });
+    }
 
     e.preventDefault();
     e.stopPropagation();

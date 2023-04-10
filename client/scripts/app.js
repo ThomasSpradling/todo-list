@@ -3,6 +3,7 @@ const App = {
 
     FormView.initialize();
     TasksView.initialize();
+    App.fetch();
 
     setInterval(App.fetch, 10000);
   },

@@ -59,7 +59,7 @@ button:hover, button:focus {
 }
 
 #tasks {
-  margin: 150px auto;
+  margin: 200px auto;
   width: 700px;
 }
 .item {
@@ -134,4 +134,32 @@ button:hover, button:focus {
 }
 .item:hover {
   opacity: 0.8;
+}
+
+#filter {
+  display: inline-block;
+  list-style-type: none;
+  margin: auto;
+  padding: 0;
+  overflow: hidden;
+}
+#filter li {
+  float: left;
+}
+li a {
+  display: block;
+  padding: 15px;
+}
+#filter li:not(:first-child) a {
+  color: white;
+  background-color: #98c1d9;
+  cursor: pointer;
+}
+#filter li:not(:first-child) a:hover {
+  background-color: #5086a5;
+}
+
+#filter li:not(:first-child) a.active {
+  background-color: #495771;
+  color: white;
 }
