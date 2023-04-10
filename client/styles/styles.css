@@ -1,0 +1,137 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  color: #293241;
+  background-color: #98c1d9;
+  position: relative;
+}
+
+body:after {
+  content: "";
+  position: fixed;
+  bottom: -120px;
+  width: 100%;
+  background-color: #e0fbfc;
+  height: 120px;
+  box-shadow: 0 -30px 30px #98c1d9;
+  z-index: 5;
+}
+
+header {
+  background-color: #e0fbfc;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  text-align: center;
+  z-index: 5;
+  box-shadow: 0 30px 30px #98c1d9;
+}
+
+#input {
+  margin: 30px 0;
+  height: 50px;
+  padding: 10px;
+  width: 500px;
+  background-color: white;
+  border: none;
+  border-bottom: 0px solid #98c1d9;
+  transition: border-bottom 0.2s;
+}
+#input:focus {
+  outline: none;
+  border-bottom: 4px solid #98c1d9;
+}
+
+button {
+  margin: 0;
+  height: 50px;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  color: white;
+  background-color: #98c1d9;
+}
+button:hover, button:focus {
+  background-color: #5086a5;
+}
+
+#tasks {
+  margin: 150px auto;
+  width: 700px;
+}
+.item {
+  display: block;
+  padding: 20px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: 2px solid #5086a5;
+  background-color: white;
+  font-size: larger;
+  color: #293241;
+  position: relative;
+
+  z-index: 1;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  transition: opacity 0.2s;
+}
+.text {
+  vertical-align: middle;
+}
+.item input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+.item .check {
+  vertical-align: middle;
+  font-size: 2rem;
+  color: #ccc;
+  margin-right: 20px;
+}
+.item input:checked ~ .check {
+  vertical-align: middle;
+  color: #5086a5;
+  margin-right: 20px;
+}
+
+.item:has(input:checked) {
+  opacity: 0.6;
+}
+
+.item .edit {
+  position: absolute;
+  right: 4rem;
+  font-size: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #5086a5;
+}
+.item .edit:hover {
+  color: rgb(222, 187, 109);
+}
+.item .delete {
+  position: absolute;
+  right: 1.5rem;
+  font-size: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #5086a5;
+}
+.item .delete:hover {
+  color: rgb(226, 126, 126);
+}
+.item .delete, .item .edit {
+  z-index: 2;
+}
+.item:hover {
+  opacity: 0.8;
+}

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do List</title>
+  <link rel="stylesheet" href="node_modules/normalize.css/normalize.css">
+  <link rel="stylesheet" href="client/styles/styles.css">
+  <script src="node_modules/jquery/dist/jquery.js"></script>
+  <script src="node_modules/underscore/underscore.js"></script>
+  <script src="https://kit.fontawesome.com/5de42d3ec8.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header>
+    <form id="create" autocomplete="off">
+      <input id="input" type="text" placeholder="Enter something you need to get done...">
+      <button type="submit">Add Task</button>
+    </form>
+  </header>
+  <div id="tasks"></div>
+
+  <script src="client/scripts/tasks.js"></script>
+  <script src="client/scripts/formView.js"></script>
+  <script src="client/scripts/tasksView.js"></script>
+  <script src="client/scripts/taskView.js"></script>
+  <script src="client/scripts/app.js"></script>
+  <script>
+    $(document).ready(function() {
+      App.initialize();
+    });
+  </script>
+</body>
+</html>
